@@ -9,7 +9,7 @@
     <name>ETM - APIs</name>
 
     <properties>
-        <org-jibx-version>1.2.1</org-jibx-version>
+        <org-jibx-version>1.2.6</org-jibx-version>
     </properties>
 
     <build>
@@ -51,6 +51,24 @@
                             </goals>
                         </execution>
                     </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.jibx</groupId>
+                            <artifactId>jibx-bind</artifactId>
+                            <version>${org-jibx-version}</version>
+                            <exclusions>
+                                <exclusion>
+                                    <artifactId>bcel</artifactId>
+                                    <groupId>bcel</groupId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.bcel</groupId>
+                            <artifactId>bcel</artifactId>
+                            <version>6.0</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
