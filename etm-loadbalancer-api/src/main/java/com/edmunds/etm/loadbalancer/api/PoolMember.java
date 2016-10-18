@@ -25,7 +25,7 @@ import java.io.Serializable;
  *
  * @author Ryan Holmes
  */
-public class PoolMember implements Serializable {
+public class PoolMember implements Serializable, Comparable<PoolMember> {
 
     private final HostAddress hostAddress;
 
@@ -69,5 +69,10 @@ public class PoolMember implements Serializable {
         sb.append(':');
         sb.append(hostAddress.getPort());
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(PoolMember that) {
+        return this.hostAddress.compareTo(that.getHostAddress());
     }
 }

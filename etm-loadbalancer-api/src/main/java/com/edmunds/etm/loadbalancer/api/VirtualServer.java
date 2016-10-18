@@ -25,6 +25,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * A VirtualServer represents a load balancer virtual server object.
@@ -65,17 +67,17 @@ public class VirtualServer implements Serializable {
 
     private final String name;
     private final HostAddress hostAddress;
-    private final Set<PoolMember> poolMembers;
+    private final SortedSet<PoolMember> poolMembers;
 
     public VirtualServer(String name, HostAddress hostAddress) {
         this(name, hostAddress, null);
     }
 
-    public VirtualServer(String name, HostAddress hostAddress, Set<PoolMember> poolMembers) {
+    public VirtualServer(String name, HostAddress hostAddress, SortedSet<PoolMember> poolMembers) {
         Validate.notEmpty(name, "Name is empty");
         this.name = name;
         this.hostAddress = hostAddress;
-        this.poolMembers = poolMembers != null ? poolMembers : new HashSet<PoolMember>();
+        this.poolMembers = poolMembers != null ? poolMembers : new TreeSet<PoolMember>();
     }
 
     public String getName() {
