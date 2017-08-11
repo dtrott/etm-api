@@ -33,8 +33,8 @@
     <mapping name="token" class="com.edmunds.etm.common.thrift.UrlTokenDto">
         <value style="attribute" name="name" field="name" usage="required"/>
         <value style="attribute" name="type" field="type" usage="required"
-               deserializer="org.apache.commons.lang.StringUtils.upperCase"
-               serializer="org.apache.commons.lang.StringUtils.lowerCase"/>
+               deserializer="org.apache.commons.lang3.StringUtils.upperCase"
+               serializer="org.apache.commons.lang3.StringUtils.lowerCase"/>
         <collection create-type="java.util.ArrayList" field="values" item-type="java.lang.String">
             <structure name="value">
                 <value style="text"/>

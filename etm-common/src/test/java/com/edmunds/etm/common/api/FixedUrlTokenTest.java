@@ -41,7 +41,7 @@ public class FixedUrlTokenTest {
         assertNotNull(token);
     }
 
-    @Test(expectedExceptions = {IllegalArgumentException.class})
+    @Test(expectedExceptions = {NullPointerException.class})
     public void testConstructFailNullName() {
         UrlToken token = new FixedUrlToken(null, "v1");
     }
