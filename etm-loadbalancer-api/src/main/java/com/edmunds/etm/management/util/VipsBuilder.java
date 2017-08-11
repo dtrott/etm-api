@@ -22,7 +22,8 @@ import com.edmunds.etm.management.api.ManagementVips;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeNode;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,7 +39,7 @@ import static com.edmunds.etm.management.api.ManagementVipType.COMPLETE;
  */
 public class VipsBuilder {
 
-    private static final Logger logger = Logger.getLogger(VipsBuilder.class);
+    private static final Logger logger = LoggerFactory.getLogger(VipsBuilder.class);
 
     private final ZooKeeperTreeNode rootNode;
     private final ObjectSerializer objectSerializer;

@@ -17,7 +17,8 @@ package com.edmunds.etm.common.api;
 
 import com.edmunds.etm.common.thrift.AgentInstanceDto;
 import org.apache.commons.lang3.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -30,7 +31,7 @@ import java.util.UUID;
  */
 public class AgentInstance {
 
-    private static final Logger logger = Logger.getLogger(AgentInstance.class);
+    private static final Logger logger = LoggerFactory.getLogger(AgentInstance.class);
 
     private final UUID id;
     private final String ipAddress;

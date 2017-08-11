@@ -18,7 +18,8 @@ package com.edmunds.etm.loadbalancer.impl;
 import com.edmunds.etm.loadbalancer.api.LoadBalancerConfig;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.Set;
@@ -29,7 +30,7 @@ import java.util.Set;
  * TODO Replace this with a ZooKeeper implementation.
  */
 public class Inet4AddressPool {
-    private static final Logger logger = Logger.getLogger(Inet4AddressPool.class);
+    private static final Logger logger = LoggerFactory.getLogger(Inet4AddressPool.class);
 
     private final Set<OrderedInet4Address> issuedAddresses;
     private final OrderedInet4Address minAddress;

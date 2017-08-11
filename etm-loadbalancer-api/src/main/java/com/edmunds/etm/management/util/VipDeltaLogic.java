@@ -23,7 +23,8 @@ import com.edmunds.etm.management.api.ManagementVipType;
 import com.edmunds.etm.management.api.ManagementVips;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.List;
@@ -41,7 +42,7 @@ public class VipDeltaLogic {
     /**
      * The logger.
      */
-    private static final Logger logger = Logger.getLogger(VipDeltaLogic.class);
+    private static final Logger logger = LoggerFactory.getLogger(VipDeltaLogic.class);
 
     private final ManagementVips oldVips;
     private final ManagementVips newVips;

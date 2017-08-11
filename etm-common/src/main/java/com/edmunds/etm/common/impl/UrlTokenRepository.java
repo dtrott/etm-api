@@ -24,9 +24,10 @@ import com.edmunds.etm.common.xml.XmlValidationException;
 import com.edmunds.etm.common.xml.XmlValidator;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.google.common.collect.Lists;
-import org.apache.log4j.Logger;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.KeeperException.Code;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +45,7 @@ import java.util.List;
 @Component
 public class UrlTokenRepository {
 
-    private static final Logger logger = Logger.getLogger(UrlTokenRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(UrlTokenRepository.class);
 
     private final ZooKeeperConnection connection;
     private final ControllerPaths controllerPaths;

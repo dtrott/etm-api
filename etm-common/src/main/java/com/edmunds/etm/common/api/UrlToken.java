@@ -17,7 +17,8 @@ package com.edmunds.etm.common.api;
 
 import com.edmunds.etm.common.thrift.UrlTokenDto;
 import org.apache.commons.lang3.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +28,7 @@ import java.util.List;
  * @author Ryan Holmes
  */
 public abstract class UrlToken {
-    private static final Logger logger = Logger.getLogger(UrlToken.class);
+    private static final Logger logger = LoggerFactory.getLogger(UrlToken.class);
 
     private String name;
     private List<String> values;
