@@ -98,4 +98,13 @@ public class ClientPaths {
     public Set<String> getStructuralPaths() {
         return Collections.singleton(getConnected());
     }
+
+    /**
+     * Returns true if the client should be added to the ETM pool.
+     *
+     * @return true if this current client should be added to ETM.
+     */
+    public boolean isEnabled() {
+        return environment.isEtmClientEnabled();
+    }
 }
