@@ -195,12 +195,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-            <dependency>
-                <groupId>com.edmunds.oss.common</groupId>
-                <artifactId>autotest</artifactId>
-                <version>[1.0.0, 1.1.0)</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
