@@ -20,7 +20,7 @@ import com.edmunds.etm.common.thrift.ClientConfigDto;
 import com.edmunds.etm.common.thrift.MavenModuleDto;
 import com.edmunds.etm.common.thrift.UrlTokenCollectionDto;
 import com.edmunds.etm.common.thrift.UrlTokenDto;
-import org.apache.commons.io.IOUtils;
+import com.google.common.io.ByteStreams;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +56,7 @@ public final class TestDataProvider {
     public static byte[] loadConfigurationFromFile(String fileName) {
         InputStream stream = TestDataProvider.class.getResourceAsStream(fileName);
         try {
-            return IOUtils.toByteArray(stream);
+            return ByteStreams.toByteArray(stream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

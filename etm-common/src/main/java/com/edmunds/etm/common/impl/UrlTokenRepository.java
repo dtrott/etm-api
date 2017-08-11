@@ -24,7 +24,6 @@ import com.edmunds.etm.common.xml.XmlValidationException;
 import com.edmunds.etm.common.xml.XmlValidator;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.google.common.collect.Lists;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.KeeperException.Code;
@@ -33,6 +32,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -237,7 +237,7 @@ public class UrlTokenRepository {
      * @throws IOException if an error occurs while reading the XML
      */
     public List<UrlToken> readTokensFromFile(File file) throws IOException {
-        byte[] xmlData = FileUtils.readFileToByteArray(file);
+        byte[] xmlData = Files.readAllBytes(file.toPath());
 
         List<UrlToken> tokens;
         try {
