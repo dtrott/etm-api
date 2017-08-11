@@ -5,7 +5,7 @@
     <groupId>com.edmunds.oss.etm</groupId>
     <artifactId>etm-api</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>ETM - APIs</name>
 
     <properties>
