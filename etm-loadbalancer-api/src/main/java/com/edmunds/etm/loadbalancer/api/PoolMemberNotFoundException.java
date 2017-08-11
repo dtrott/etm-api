@@ -23,7 +23,7 @@ package com.edmunds.etm.loadbalancer.api;
  * @author Ryan Holmes
  */
 public class PoolMemberNotFoundException extends Exception {
-    
+
     public PoolMemberNotFoundException(String message) {
         super(message);
     }

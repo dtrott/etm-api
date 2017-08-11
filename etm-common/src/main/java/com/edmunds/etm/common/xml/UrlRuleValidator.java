@@ -76,7 +76,7 @@ public class UrlRuleValidator {
 
         if (rule.startsWith(SLASH)) {
             int charPos = 0;
-            for (StringTokenizer stz = new StringTokenizer(rule, SLASH, true); stz.hasMoreTokens();) {
+            for (StringTokenizer stz = new StringTokenizer(rule, SLASH, true); stz.hasMoreTokens(); ) {
                 String s = stz.nextToken();
                 if (!SLASH.equals(s) && !isTokenValid(s)) {
                     errors.add(new UrlRuleValidationError(rule, s, charPos, null));

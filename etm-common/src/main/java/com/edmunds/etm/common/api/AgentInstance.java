@@ -16,11 +16,12 @@
 package com.edmunds.etm.common.api;
 
 import com.edmunds.etm.common.thrift.AgentInstanceDto;
+import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
-import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
 
 /**
  * An AgentInstance represents a running ETM Agent process.
@@ -42,8 +43,8 @@ public class AgentInstance {
     /**
      * Constructs a new AgentInstance with the specified parameters.
      *
-     * @param id unique agent identifier
-     * @param version application version
+     * @param id        unique agent identifier
+     * @param version   application version
      * @param ipAddress ip address of the agent host
      */
     public AgentInstance(UUID id, String ipAddress, String version) {
@@ -79,17 +80,16 @@ public class AgentInstance {
      * @return host name
      */
     public String getHostName() {
-        if(hostName == null) {
+        if (hostName == null) {
             try {
                 InetAddress addr = InetAddress.getByName(ipAddress);
                 hostName = addr.getHostName();
-            } catch(UnknownHostException e) {
+            } catch (UnknownHostException e) {
                 return "Unknown";
             }
         }
         return hostName;
     }
-
 
     /**
      * Gets the application version.
@@ -157,10 +157,10 @@ public class AgentInstance {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) {
+        if (this == o) {
             return true;
         }
-        if(!(o instanceof AgentInstance)) {
+        if (!(o instanceof AgentInstance)) {
             return false;
         }
 
@@ -189,14 +189,14 @@ public class AgentInstance {
     }
 
     public static AgentInstance readDto(AgentInstanceDto dto) {
-        if(dto == null) {
+        if (dto == null) {
             return null;
         }
 
         UUID id = null;
         try {
             id = UUID.fromString(dto.getId());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             logger.error(String.format("Cannot parse UUID from dto: %s", dto), e);
             return null;
         }
@@ -207,7 +207,7 @@ public class AgentInstance {
             obj.setActiveRuleSetDigest(dto.getActiveRuleSetDigest());
             obj.setLastDeploymentEvent(RuleSetDeploymentEvent.readDto(dto.getLastDeploymentEvent()));
             obj.setLastFailedDeploymentEvent(RuleSetDeploymentEvent.readDto(dto.getLastFailedDeploymentEvent()));
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             logger.error("Invalid agent instance DTO", e);
         }
 
@@ -215,7 +215,7 @@ public class AgentInstance {
     }
 
     public static AgentInstanceDto writeDto(AgentInstance obj) {
-        if(obj == null) {
+        if (obj == null) {
             return null;
         }
 

@@ -9,5 +9,5 @@
     <token name="year" type="regex">
         <value>(19|20)\d{2}</value>
     </token>
-    
+
 </urlTokens>

@@ -45,12 +45,12 @@ public interface LoadBalancerConnection {
     public Set<VirtualServer> getAllVirtualServers() throws RemoteException;
 
     public VirtualServer getVirtualServer(String serverName)
-        throws VirtualServerNotFoundException, RemoteException;
+            throws VirtualServerNotFoundException, RemoteException;
 
     public boolean isVirtualServerDefined(String serverName) throws RemoteException;
 
     public Map<String, AvailabilityStatus> getAvailabilityStatus(List<String> serverNames)
-        throws VirtualServerNotFoundException, RemoteException;
+            throws VirtualServerNotFoundException, RemoteException;
 
     public HostAddress createVirtualServer(
             VirtualServer server, VirtualServerConfig virtualServerConfig,
@@ -59,13 +59,13 @@ public interface LoadBalancerConnection {
     public void verifyVirtualServer(VirtualServer server, HttpMonitor httpMonitor);
 
     public void deleteVirtualServer(VirtualServer server)
-        throws VirtualServerNotFoundException, RemoteException;
+            throws VirtualServerNotFoundException, RemoteException;
 
     public void addPoolMember(String serverName, PoolMember member)
-        throws PoolMemberExistsException, RemoteException;
+            throws PoolMemberExistsException, RemoteException;
 
     public void removePoolMember(String serverName, PoolMember member)
-        throws PoolMemberNotFoundException, RemoteException;
+            throws PoolMemberNotFoundException, RemoteException;
 
     public boolean saveConfiguration();
 }

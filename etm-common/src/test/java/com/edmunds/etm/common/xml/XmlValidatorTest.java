@@ -15,10 +15,13 @@
  */
 package com.edmunds.etm.common.xml;
 
-import java.io.IOException;
 import org.testng.annotations.Test;
 
-import static com.edmunds.etm.common.xml.TestDataProvider.*;
+import java.io.IOException;
+
+import static com.edmunds.etm.common.xml.TestDataProvider.DRR_CONFIG_FILE;
+import static com.edmunds.etm.common.xml.TestDataProvider.URL_TOKENS_FILE;
+import static com.edmunds.etm.common.xml.TestDataProvider.loadConfigurationFromFile;
 import static com.edmunds.etm.common.xml.XmlValidator.CLIENT_CONFIG_XSD;
 import static com.edmunds.etm.common.xml.XmlValidator.URL_TOKENS_XSD;
 

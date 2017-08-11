@@ -16,6 +16,7 @@
 package com.edmunds.etm.common.api;
 
 import com.edmunds.etm.common.util.RegexUtil;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,18 +38,18 @@ public class FixedUrlToken extends UrlToken {
     @Override
     public String toRegex() {
 
-        if(regex == null) {
+        if (regex == null) {
             // list of explicit values; regular-expression-ize
             List<String> values = getValues();
             StringBuilder sb = new StringBuilder();
             sb.append('(');
-            for(String value : values) {
+            for (String value : values) {
                 sb.append(RegexUtil.escapeRegex(value));
                 sb.append('|');
             }
 
             // delete the trailing '|'
-            if(!values.isEmpty()) {
+            if (!values.isEmpty()) {
                 sb.deleteCharAt(sb.length() - 1);
             }
 
@@ -63,5 +64,4 @@ public class FixedUrlToken extends UrlToken {
     public UrlTokenType getType() {
         return UrlTokenType.FIXED;
     }
-
 }

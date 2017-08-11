@@ -50,10 +50,10 @@ public class MavenModule implements Comparable<MavenModule>, Serializable {
 
         // Since all fields are final immutable calculate the hashCode now.
         this.hashCode = new HashCodeBuilder()
-            .append(groupId)
-            .append(artifactId)
-            .append(version)
-            .toHashCode();
+                .append(groupId)
+                .append(artifactId)
+                .append(version)
+                .toHashCode();
     }
 
     /**
@@ -95,10 +95,10 @@ public class MavenModule implements Comparable<MavenModule>, Serializable {
         MavenModule other = (MavenModule) o;
 
         return new EqualsBuilder()
-            .append(groupId, other.groupId)
-            .append(artifactId, other.artifactId)
-            .append(version, other.version)
-            .isEquals();
+                .append(groupId, other.groupId)
+                .append(artifactId, other.artifactId)
+                .append(version, other.version)
+                .isEquals();
     }
 
     @Override
@@ -113,10 +113,10 @@ public class MavenModule implements Comparable<MavenModule>, Serializable {
         }
 
         return new CompareToBuilder()
-            .append(groupId, other.groupId)
-            .append(artifactId, other.artifactId)
-            .append(version, other.version)
-            .toComparison();
+                .append(groupId, other.groupId)
+                .append(artifactId, other.artifactId)
+                .append(version, other.version)
+                .toComparison();
     }
 
     /**

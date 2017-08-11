@@ -15,19 +15,20 @@
  */
 package com.edmunds.etm.common.xml;
 
+import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
+
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
-import org.springframework.stereotype.Component;
-import org.xml.sax.SAXException;
 
 /**
  * XML validator for Etm configuration files. <p/> <p/> Copyright (C) 2010 Edmunds.com <p/> <p/> Date: Mar 3, 2010
@@ -59,7 +60,7 @@ public class XmlValidator {
      * Validate configuration against XSD schema.
      *
      * @param configuration XML configuration as a byte array
-     * @param schemaFile XSD schema file name.
+     * @param schemaFile    XSD schema file name.
      * @throws XmlValidationException when validation fails
      */
     public void validate(byte[] configuration, String schemaFile) throws XmlValidationException {
@@ -71,7 +72,7 @@ public class XmlValidator {
      * Validate configuration against XSD schema.
      *
      * @param configuration XML configuration as a string
-     * @param schemaFile XSD schema file name.
+     * @param schemaFile    XSD schema file name.
      * @throws XmlValidationException when validation fails
      */
     public void validate(String configuration, String schemaFile) throws XmlValidationException {
@@ -82,19 +83,19 @@ public class XmlValidator {
     /**
      * Validate configuration against XSD schema.
      *
-     * @param source XML configuration source
+     * @param source     XML configuration source
      * @param schemaFile XSD schema file name
      * @throws XmlValidationException if validation fails
      */
     private void validate(Source source, String schemaFile) throws XmlValidationException {
         try {
-            if(!validatorsMap.containsKey(schemaFile)) {
+            if (!validatorsMap.containsKey(schemaFile)) {
                 validatorsMap.put(schemaFile, initValidator(schemaFile));
             }
             validatorsMap.get(schemaFile).validate(source);
-        } catch(SAXException e) {
+        } catch (SAXException e) {
             throw new XmlValidationException(e);
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new XmlValidationException(e);
         }
     }
@@ -105,7 +106,7 @@ public class XmlValidator {
      * @param schemaFileName XSD schema file name.
      * @return validator object.
      * @throws org.xml.sax.SAXException when parser error occurs.
-     * @throws java.io.IOException when IO error occurs.
+     * @throws java.io.IOException      when IO error occurs.
      */
     private Validator initValidator(String schemaFileName) throws SAXException, IOException {
         InputStream is = null;
@@ -116,7 +117,7 @@ public class XmlValidator {
             Schema schema = factory.newSchema(source);
             return schema.newValidator();
         } finally {
-            if(is != null) {
+            if (is != null) {
                 is.close();
             }
         }

@@ -35,11 +35,10 @@ public abstract class RegexUtil {
      *
      * @param string The string to escape.
      * @return The escaped string, i.e., the supplied string with any of '+', '[', ']', '(', ')', '{', '}', '$', '.',
-     *         '?', '^', '|', ']' replaced by their corresponding escaped form, "\+", "\[", "\]", etc.
+     * '?', '^', '|', ']' replaced by their corresponding escaped form, "\+", "\[", "\]", etc.
      */
     public static String escapeRegex(String string) {
         Matcher matcher = REGEX_SPECIAL_CHARS_PATTERN.matcher(string);
         return matcher.replaceAll("\\\\$1");
     }
-
 }

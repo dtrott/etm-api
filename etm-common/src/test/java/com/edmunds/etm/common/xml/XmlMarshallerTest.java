@@ -19,7 +19,9 @@ import com.edmunds.etm.common.thrift.ClientConfigDto;
 import com.edmunds.etm.common.thrift.UrlTokenCollectionDto;
 import org.testng.annotations.Test;
 
-import static com.edmunds.etm.common.xml.TestDataProvider.*;
+import static com.edmunds.etm.common.xml.TestDataProvider.DRR_CONFIG_FILE;
+import static com.edmunds.etm.common.xml.TestDataProvider.URL_TOKENS_FILE;
+import static com.edmunds.etm.common.xml.TestDataProvider.loadConfigurationFromFile;
 import static org.testng.Assert.assertNotNull;
 
 /**
@@ -64,7 +66,6 @@ public class XmlMarshallerTest {
         byte[] bytes = XmlMarshaller.marshalToByteArray(coll);
         assertNotNull(bytes);
     }
-
 
     @Test(expectedExceptions = RuntimeException.class)
     public void testInvalidFilenameMarshallToXMLAndSave() {

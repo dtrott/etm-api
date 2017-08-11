@@ -24,16 +24,17 @@ import com.edmunds.etm.common.xml.XmlValidationException;
 import com.edmunds.etm.common.xml.XmlValidator;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.google.common.collect.Lists;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.KeeperException.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides direct access and allows modification of persisted {@link UrlToken} objects.
@@ -67,10 +68,10 @@ public class UrlTokenRepository {
         List<String> tokenNames;
         try {
             tokenNames = connection.getChildren(controllerPaths.getUrlTokens(), null);
-        } catch(KeeperException e) {
+        } catch (KeeperException e) {
             logger.error("Error fetching URL token names", e);
             tokenNames = new ArrayList<String>();
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
@@ -87,21 +88,21 @@ public class UrlTokenRepository {
         byte[] data;
         try {
             data = connection.getData(controllerPaths.getUrlToken(name), null, null);
-        } catch(KeeperException e) {
-            if(e.code() == Code.NONODE) {
+        } catch (KeeperException e) {
+            if (e.code() == Code.NONODE) {
                 return null;
             } else {
                 logger.error(String.format("Error fetching URL token: %s", name), e);
                 return null;
             }
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         try {
             UrlTokenDto dto = objectSerializer.readValue(data, UrlTokenDto.class);
             return UrlToken.readDto(dto);
-        } catch(IOException e) {
+        } catch (IOException e) {
             return null;
         }
     }
@@ -116,21 +117,21 @@ public class UrlTokenRepository {
         byte[] data;
         try {
             data = objectSerializer.writeValue(UrlToken.writeDto(token));
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         String path = controllerPaths.getUrlToken(token.getName());
         try {
             connection.createPersistent(path, data);
-        } catch(KeeperException e) {
-            if(e.code() == Code.NODEEXISTS) {
+        } catch (KeeperException e) {
+            if (e.code() == Code.NODEEXISTS) {
                 throw new TokenExistsException(e);
             } else {
                 logger.error(String.format("Error creating URL token: %s", token.getName()), e);
                 throw new RuntimeException(e);
             }
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             logger.error(String.format("Error creating URL token: %s", token.getName()), e);
             throw new RuntimeException(e);
         }
@@ -146,21 +147,21 @@ public class UrlTokenRepository {
         byte[] data;
         try {
             data = objectSerializer.writeValue(UrlToken.writeDto(token));
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         String path = controllerPaths.getUrlToken(token.getName());
         try {
             connection.setData(path, data, -1);
-        } catch(KeeperException e) {
-            if(e.code() == Code.NONODE) {
+        } catch (KeeperException e) {
+            if (e.code() == Code.NONODE) {
                 throw new TokenNotFoundException(e);
             } else {
                 logger.error(String.format("Error updating URL token: %s", token.getName()), e);
                 throw new RuntimeException(e);
             }
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             logger.error(String.format("Error updating URL token: %s", token.getName()), e);
             throw new RuntimeException(e);
         }
@@ -176,14 +177,14 @@ public class UrlTokenRepository {
         String path = controllerPaths.getUrlToken(name);
         try {
             connection.delete(path, -1);
-        } catch(KeeperException e) {
-            if(e.code() == Code.NONODE) {
+        } catch (KeeperException e) {
+            if (e.code() == Code.NONODE) {
                 throw new TokenNotFoundException(e);
             } else {
                 logger.error(String.format("Error deleting URL token: %s", name), e);
                 throw new RuntimeException(e);
             }
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
@@ -193,10 +194,10 @@ public class UrlTokenRepository {
      */
     public void deleteAllTokens() {
         List<String> tokenNames = getTokenNames();
-        for(String name : tokenNames) {
+        for (String name : tokenNames) {
             try {
                 deleteToken(name);
-            } catch(TokenNotFoundException e) {
+            } catch (TokenNotFoundException e) {
                 logger.warn(String.format("Token not found: %s", name), e);
             }
         }
@@ -205,7 +206,7 @@ public class UrlTokenRepository {
     /**
      * Loads URL tokens definitions from the specified XML file, optionally replacing the existing tokens.
      *
-     * @param file an XML file containing token definitions
+     * @param file    an XML file containing token definitions
      * @param replace true to replace existing tokens, false to merge with existing
      * @thows IOException if an error occurred while reading the default tokens
      */
@@ -214,15 +215,15 @@ public class UrlTokenRepository {
         List<UrlToken> tokens = readTokensFromFile(file);
 
         // Delete existing tokens
-        if(replace) {
+        if (replace) {
             deleteAllTokens();
         }
 
         // Add new tokens
-        for(UrlToken token : tokens) {
+        for (UrlToken token : tokens) {
             try {
                 createToken(token);
-            } catch(TokenExistsException e) {
+            } catch (TokenExistsException e) {
                 logger.warn(String.format("Token already exists: %s", token.getName()), e);
             }
         }
@@ -241,11 +242,11 @@ public class UrlTokenRepository {
         List<UrlToken> tokens;
         try {
             tokens = unmarshalTokensFromXml(xmlData);
-        } catch(XmlValidationException e) {
+        } catch (XmlValidationException e) {
             String message = "Invalid default URL token XML file";
             logger.error(message, e);
             throw new IOException(message, e);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             String message = "Error loading default tokens";
             logger.error(message, e);
             throw new IOException(message, e);
@@ -271,11 +272,10 @@ public class UrlTokenRepository {
         UrlTokenCollectionDto tokenCollection = XmlMarshaller.unmarshal(xmlData, UrlTokenCollectionDto.class);
         List<UrlTokenDto> tokenDtos = tokenCollection.getTokens();
         ArrayList<UrlToken> tokens = Lists.newArrayListWithCapacity(tokenDtos.size());
-        for(UrlTokenDto dto : tokenCollection.getTokens()) {
+        for (UrlTokenDto dto : tokenCollection.getTokens()) {
             tokens.add(UrlToken.readDto(dto));
         }
 
         return tokens;
     }
-
 }

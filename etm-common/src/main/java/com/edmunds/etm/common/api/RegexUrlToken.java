@@ -15,8 +15,9 @@
  */
 package com.edmunds.etm.common.api;
 
-import java.util.Collections;
 import org.apache.commons.lang.StringUtils;
+
+import java.util.Collections;
 
 /**
  * @author Ryan Holmes
@@ -31,7 +32,7 @@ public class RegexUrlToken extends UrlToken {
 
     @Override
     public String toRegex() {
-        if(regex == null) {
+        if (regex == null) {
             regex = StringUtils.join(getValues(), "|");
         }
         return regex;
@@ -41,6 +42,4 @@ public class RegexUrlToken extends UrlToken {
     public UrlTokenType getType() {
         return UrlTokenType.REGEX;
     }
-
-
 }

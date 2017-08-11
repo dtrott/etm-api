@@ -80,7 +80,7 @@ public class ManagementVip implements Comparable<ManagementVip> {
     }
 
     public static <K, V extends Comparable<? super V>> ImmutableMap<K, V> createSortedMap(
-        Collection<V> poolMembers, Function<V, K> indexFunction) {
+            Collection<V> poolMembers, Function<V, K> indexFunction) {
 
         final List<V> members = Lists.newArrayList(poolMembers);
         Collections.sort(members);
@@ -111,9 +111,9 @@ public class ManagementVip implements Comparable<ManagementVip> {
      * @param httpMonitor       the health monitor.
      */
     public ManagementVip(
-        ManagementLoadBalancerState loadBalancerState, MavenModule mavenModule,
-        HostAddress hostAddress, Collection<ManagementPoolMember> poolMembers,
-        String rootContext, List<String> rules, HttpMonitor httpMonitor) {
+            ManagementLoadBalancerState loadBalancerState, MavenModule mavenModule,
+            HostAddress hostAddress, Collection<ManagementPoolMember> poolMembers,
+            String rootContext, List<String> rules, HttpMonitor httpMonitor) {
 
         Validate.notNull(loadBalancerState, "loadBalancerState is null");
         Validate.notNull(mavenModule, "mavenModule is null");
@@ -132,14 +132,14 @@ public class ManagementVip implements Comparable<ManagementVip> {
 
         // Not using poolMembers in hashCode calculation.
         this.hashCode = new HashCodeBuilder()
-            .append(mavenModule)
-            .append(hostAddress)
-            .append(rootContext)
-            .append(rules)
-            .append(vipType)
-            .append(loadBalancerState)
-            .append(httpMonitor)
-            .toHashCode();
+                .append(mavenModule)
+                .append(hostAddress)
+                .append(rootContext)
+                .append(rules)
+                .append(vipType)
+                .append(loadBalancerState)
+                .append(httpMonitor)
+                .toHashCode();
 
         // Ensure data is consistent.
         if (loadBalancerState == CREATE_REQUEST) {
@@ -210,15 +210,15 @@ public class ManagementVip implements Comparable<ManagementVip> {
 
         // Probably only the first to will be used.
         return new EqualsBuilder()
-            .append(mavenModule, other.mavenModule)
-            .append(hostAddress, other.hostAddress)
-            .append(rootContext, other.rootContext)
-            .append(poolMembers, other.poolMembers)
-            .append(rules, other.rules)
-            .append(vipType, other.getVipType())
-            .append(loadBalancerState, other.loadBalancerState)
-            .append(httpMonitor, other.httpMonitor)
-            .isEquals();
+                .append(mavenModule, other.mavenModule)
+                .append(hostAddress, other.hostAddress)
+                .append(rootContext, other.rootContext)
+                .append(poolMembers, other.poolMembers)
+                .append(rules, other.rules)
+                .append(vipType, other.getVipType())
+                .append(loadBalancerState, other.loadBalancerState)
+                .append(httpMonitor, other.httpMonitor)
+                .isEquals();
     }
 
     @Override
@@ -234,14 +234,14 @@ public class ManagementVip implements Comparable<ManagementVip> {
 
         // Probably only the first 2 will be used.
         return new CompareToBuilder()
-            .append(mavenModule, other.mavenModule)
-            .append(hostAddress, other.hostAddress)
-            .append(rootContext, other.rootContext)
-            .append(rules, other.rules)
-            .append(vipType, other.getVipType())
-            .append(loadBalancerState, other.loadBalancerState)
-            .append(httpMonitor, other.httpMonitor)
-            .toComparison();
+                .append(mavenModule, other.mavenModule)
+                .append(hostAddress, other.hostAddress)
+                .append(rootContext, other.rootContext)
+                .append(rules, other.rules)
+                .append(vipType, other.getVipType())
+                .append(loadBalancerState, other.loadBalancerState)
+                .append(httpMonitor, other.httpMonitor)
+                .toComparison();
     }
 
     @Override

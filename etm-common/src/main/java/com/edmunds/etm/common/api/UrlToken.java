@@ -16,11 +16,12 @@
 package com.edmunds.etm.common.api;
 
 import com.edmunds.etm.common.thrift.UrlTokenDto;
+import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
 
 /**
  * @author Ryan Holmes
@@ -30,7 +31,6 @@ public abstract class UrlToken {
 
     private String name;
     private List<String> values;
-
 
     public UrlToken(String name, List<String> values) {
         Validate.notEmpty(name, "UrlToken name is empty");
@@ -91,14 +91,14 @@ public abstract class UrlToken {
     /**
      * Factory method to create a new UrlToken of the specified type.
      *
-     * @param type type of token to create
-     * @param name token name
+     * @param type   type of token to create
+     * @param name   token name
      * @param values list of values
      * @return new UrlToken object
      */
     public static UrlToken newUrlToken(UrlTokenType type, String name, List<String> values) {
         UrlToken token;
-        switch(type) {
+        switch (type) {
             case FIXED:
                 token = new FixedUrlToken(name, values);
                 break;
@@ -112,7 +112,6 @@ public abstract class UrlToken {
         return token;
     }
 
-
     /**
      * Reads the specified DTO and returns a UrlToken object.
      *
@@ -120,7 +119,7 @@ public abstract class UrlToken {
      * @return a UrlToken object
      */
     public static UrlToken readDto(UrlTokenDto dto) {
-        if(dto == null) {
+        if (dto == null) {
             return null;
         }
 
@@ -128,7 +127,7 @@ public abstract class UrlToken {
 
         try {
             type = UrlTokenType.valueOf(dto.getType());
-        } catch(RuntimeException ex) {
+        } catch (RuntimeException ex) {
             logger.warn(String.format("Invalid URL token type read from DTO: %s; defaulting to FIXED", dto.getType()));
             type = UrlTokenType.FIXED;
         }
@@ -143,7 +142,7 @@ public abstract class UrlToken {
      * @return a DTO
      */
     public static UrlTokenDto writeDto(UrlToken obj) {
-        if(obj == null) {
+        if (obj == null) {
             return null;
         }
 
@@ -152,6 +151,5 @@ public abstract class UrlToken {
         dto.setType(obj.getType().name());
         dto.setValues(obj.getValues());
         return dto;
-
     }
 }

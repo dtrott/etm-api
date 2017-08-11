@@ -20,10 +20,11 @@ import com.edmunds.etm.common.thrift.ClientConfigDto;
 import com.edmunds.etm.common.thrift.MavenModuleDto;
 import com.edmunds.etm.common.thrift.UrlTokenCollectionDto;
 import com.edmunds.etm.common.thrift.UrlTokenDto;
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import org.apache.commons.io.IOUtils;
 
 /**
  * Etm configuration provider. Provides different variants of configuration. <p/> <p/> Copyright (C) 2010 Edmunds.com
@@ -56,7 +57,7 @@ public final class TestDataProvider {
         InputStream stream = TestDataProvider.class.getResourceAsStream(fileName);
         try {
             return IOUtils.toByteArray(stream);
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -64,8 +65,8 @@ public final class TestDataProvider {
     public static ClientConfigDto createNewClientConfigWithSubsets() {
         ConfigBuilder builder = new ConfigBuilder();
         builder.createMavenModule(DRR_APP)
-            .createUrlRule(DRR_APP, "rule*").createUrlRule(DRR_APP, "*ule").createUrlRule(DRR_APP, "*ul*")
-            .createUrlRule(DRR_APP, "/alpha/*").createUrlRule(DRR_APP, "/alpha/*.txt");
+                .createUrlRule(DRR_APP, "rule*").createUrlRule(DRR_APP, "*ule").createUrlRule(DRR_APP, "*ul*")
+                .createUrlRule(DRR_APP, "/alpha/*").createUrlRule(DRR_APP, "/alpha/*.txt");
         return builder.getConfig();
     }
 
@@ -103,7 +104,7 @@ public final class TestDataProvider {
         }
 
         public ConfigBuilder createUrlRule(MavenModuleDto module, String rule) {
-            if(clientConfiguration.getMavenModule().equals(module)) {
+            if (clientConfiguration.getMavenModule().equals(module)) {
 
                 clientConfiguration.getUrlRules().add(rule);
             }

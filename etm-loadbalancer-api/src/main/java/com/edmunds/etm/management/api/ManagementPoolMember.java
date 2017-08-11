@@ -74,9 +74,9 @@ public class ManagementPoolMember implements Comparable<ManagementPoolMember> {
     @Override
     public String toString() {
         return "ManagementPoolMember{" +
-            "loadBalancerState=" + loadBalancerState +
-            ", hostAddress=" + hostAddress +
-            '}';
+                "loadBalancerState=" + loadBalancerState +
+                ", hostAddress=" + hostAddress +
+                '}';
     }
 
     @Override

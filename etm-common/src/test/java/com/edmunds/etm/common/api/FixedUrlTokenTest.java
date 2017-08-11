@@ -16,9 +16,10 @@
 package com.edmunds.etm.common.api;
 
 import com.google.common.collect.Lists;
+import org.testng.annotations.Test;
+
 import java.util.Collections;
 import java.util.List;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -57,8 +58,6 @@ public class FixedUrlTokenTest {
         List<String> values = Lists.newArrayList("v1", "v2", "v3");
         token = new FixedUrlToken("test", values);
         assertEquals(token.toRegex(), "(v1|v2|v3)");
-
-
     }
 
     public void testToRegexEscaping() {
