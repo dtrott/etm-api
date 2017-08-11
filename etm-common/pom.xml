@@ -45,8 +45,8 @@
         <!-- Edmunds Dependencies -->
 
         <dependency>
-            <groupId>com.edmunds.oss.common</groupId>
-            <artifactId>edmunds-configuration</artifactId>
+            <groupId>com.edmunds.oss.etm</groupId>
+            <artifactId>etm-identity</artifactId>
         </dependency>
 
         <dependency>
