@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.edmunds.oss.etm</groupId>
+    <groupId>com.davidtrott.oss.etm</groupId>
     <artifactId>etm-api</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
@@ -83,7 +83,7 @@
             <!-- Project Dependencies -->
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -91,13 +91,13 @@
             <!-- Edmunds Dependencies -->
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-identity</artifactId>
                 <version>[1.0.0,1.1.0)</version>
             </dependency>
 
             <dependency>
-                <groupId>com.edmunds.oss.zookeeper</groupId>
+                <groupId>com.davidtrott.oss.zookeeper</groupId>
                 <artifactId>zookeeper-common</artifactId>
                 <version>[1.0.0,1.1.0)</version>
                 <exclusions>

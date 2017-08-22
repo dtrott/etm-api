@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.edmunds.oss.etm</groupId>
+        <groupId>com.davidtrott.oss.etm</groupId>
         <artifactId>etm-api</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -45,12 +45,12 @@
         <!-- Edmunds Dependencies -->
 
         <dependency>
-            <groupId>com.edmunds.oss.etm</groupId>
+            <groupId>com.davidtrott.oss.etm</groupId>
             <artifactId>etm-identity</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.edmunds.oss.zookeeper</groupId>
+            <groupId>com.davidtrott.oss.zookeeper</groupId>
             <artifactId>zookeeper-common</artifactId>
             <exclusions>
                 <exclusion>
