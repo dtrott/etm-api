@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
 import static com.edmunds.etm.common.xml.UrlRuleValidator.State.ASTERISK;
 import static com.edmunds.etm.common.xml.UrlRuleValidator.State.START;
@@ -33,21 +32,9 @@ public class UrlRuleValidator {
     private static final String SLASH = "/";
 
     /**
-     * Precompiled pattern for keywords 'make', 'year', 'zipcode' and 'state'.
+     * Zero or more directories.
      */
-    private static final Pattern KEYWORDS_PATTERN = Pattern.compile("^[(make|model|year|zipcode|state)]$",
-            Pattern.CASE_INSENSITIVE);
-
-    /**
-     * Precompiled pattern for escaped words 'make', 'year', 'zipcode' and 'state'.
-     */
-    private static final Pattern ESCAPED_KEYWORDS_PATTERN = Pattern.compile("^\\\\[(make|model|year|zipcode|state)]$",
-            Pattern.CASE_INSENSITIVE);
-
-    /**
-     * Precompiled pattern for zero or more directories.
-     */
-    private static final Pattern DIRECTORIES_PATTERN = Pattern.compile("^\\*{2}$");
+    private static final String DIRECTORIES_PATTERN = "**";
 
     private final Collection<String> xmlRules;
 
@@ -93,12 +80,10 @@ public class UrlRuleValidator {
      * Check syntax of single token.
      *
      * @param token token.
-     * @return true if sintax is valid, otherwise - false.
+     * @return true if syntax is valid, otherwise - false.
      */
     private boolean isTokenValid(String token) {
-        if (KEYWORDS_PATTERN.matcher(token).matches()
-                || ESCAPED_KEYWORDS_PATTERN.matcher(token).matches()
-                || DIRECTORIES_PATTERN.matcher(token).matches()) {
+        if (DIRECTORIES_PATTERN.equals(token)) {
             return true;
         }
 
